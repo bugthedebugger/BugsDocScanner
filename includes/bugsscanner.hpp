@@ -16,13 +16,17 @@ void getOrigin(cv::InputArray img, cv::Point2f (&dst)[4]);
 void edgeDetectionFilter1(cv::InputArray src, cv::OutputArray dst);
 // Function to detect edge with gaussian and canny
 void edgeDetectionFilter2(cv::InputArray src, cv::OutputArray dst);
-// Warp and save image with original color to file using default contours
-string warpAndGetOriginalImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
-// Warp and save image as bw color to file using default contours
-string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
 // Warp image using default contour
 void warpImage(cv::Mat src, cv::Mat dst);
 // Warp image using custom contour
 void warpImage(cv::Mat src, cv::Mat dst, vector<vector<cv::Point>> contour);
 // Return unique file name
 string getFileName(string ext);
+// Warp and save image with original color to file using default contours
+string warpAndGetOriginalImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
+// Warp and get buffer of image with original color with default contours;
+vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(string filePath);
+// Warp and save image as bw color to file using default contours
+string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
+// Warp and get buffer of image with bw color with default contours
+vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(string filePath);
