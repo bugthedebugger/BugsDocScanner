@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/bugthedebugger/Documents/cpp/opencv/bugs_scanner -isystem /usr/local/include/opencv4 
+CXX_INCLUDES = -I/home/bugthedebugger/Documents/cpp/opencv/includes -isystem /usr/local/include/opencv4 
 

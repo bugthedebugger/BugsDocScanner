@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/bugthedebugger/Documents/cpp/opencv/main.cpp
+/home/bugthedebugger/Documents/cpp/opencv/bugsscanner.cpp
 stdio.h
 -
 opencv2/opencv.hpp
@@ -17,6 +17,8 @@ iostream
 -
 chrono
 -
+bugsscanner.hpp
+/home/bugthedebugger/Documents/cpp/opencv/bugsscanner.hpp
 
 /usr/local/include/opencv4/opencv2/calib3d.hpp
 opencv2/core.hpp
@@ -1035,4 +1037,16 @@ opencv2/imgproc.hpp
 /usr/local/include/opencv4/opencv2/videoio.hpp
 opencv2/core.hpp
 /usr/local/include/opencv4/opencv2/opencv2/core.hpp
+
+includes/bugsscanner.hpp
+stdio.h
+-
+opencv2/opencv.hpp
+-
+vector
+-
+iostream
+-
+chrono
+-
 

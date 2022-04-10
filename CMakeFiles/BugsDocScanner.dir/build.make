@@ -57,27 +57,27 @@ include CMakeFiles/BugsDocScanner.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/BugsDocScanner.dir/flags.make
 
-CMakeFiles/BugsDocScanner.dir/main.cpp.o: CMakeFiles/BugsDocScanner.dir/flags.make
-CMakeFiles/BugsDocScanner.dir/main.cpp.o: main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bugthedebugger/Documents/cpp/opencv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BugsDocScanner.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BugsDocScanner.dir/main.cpp.o -c /home/bugthedebugger/Documents/cpp/opencv/main.cpp
+CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o: CMakeFiles/BugsDocScanner.dir/flags.make
+CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o: bugsscanner.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/bugthedebugger/Documents/cpp/opencv/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o -c /home/bugthedebugger/Documents/cpp/opencv/bugsscanner.cpp
 
-CMakeFiles/BugsDocScanner.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BugsDocScanner.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bugthedebugger/Documents/cpp/opencv/main.cpp > CMakeFiles/BugsDocScanner.dir/main.cpp.i
+CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/bugthedebugger/Documents/cpp/opencv/bugsscanner.cpp > CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.i
 
-CMakeFiles/BugsDocScanner.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BugsDocScanner.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bugthedebugger/Documents/cpp/opencv/main.cpp -o CMakeFiles/BugsDocScanner.dir/main.cpp.s
+CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/bugthedebugger/Documents/cpp/opencv/bugsscanner.cpp -o CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.s
 
 # Object files for target BugsDocScanner
 BugsDocScanner_OBJECTS = \
-"CMakeFiles/BugsDocScanner.dir/main.cpp.o"
+"CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o"
 
 # External object files for target BugsDocScanner
 BugsDocScanner_EXTERNAL_OBJECTS =
 
-BugsDocScanner: CMakeFiles/BugsDocScanner.dir/main.cpp.o
+BugsDocScanner: CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o
 BugsDocScanner: CMakeFiles/BugsDocScanner.dir/build.make
 BugsDocScanner: /usr/local/lib/libopencv_gapi.so.4.5.5
 BugsDocScanner: /usr/local/lib/libopencv_stitching.so.4.5.5

@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
   "BugsDocScanner"
   "BugsDocScanner.pdb"
-  "CMakeFiles/BugsDocScanner.dir/main.cpp.o"
+  "CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o"
 )
 
 # Per-language clean rules from dependency scanning.

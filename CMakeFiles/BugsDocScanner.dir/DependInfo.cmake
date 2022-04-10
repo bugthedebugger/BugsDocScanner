@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/bugthedebugger/Documents/cpp/opencv/main.cpp" "/home/bugthedebugger/Documents/cpp/opencv/CMakeFiles/BugsDocScanner.dir/main.cpp.o"
+  "/home/bugthedebugger/Documents/cpp/opencv/bugsscanner.cpp" "/home/bugthedebugger/Documents/cpp/opencv/CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "bugs_scanner"
+  "includes"
   "/usr/local/include/opencv4"
   )
 

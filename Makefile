@@ -123,32 +123,32 @@ BugsDocScanner/fast:
 	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/build
 .PHONY : BugsDocScanner/fast
 
-main.o: main.cpp.o
+bugsscanner.o: bugsscanner.cpp.o
 
-.PHONY : main.o
+.PHONY : bugsscanner.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/main.cpp.o
-.PHONY : main.cpp.o
+bugsscanner.cpp.o:
+	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o
+.PHONY : bugsscanner.cpp.o
 
-main.i: main.cpp.i
+bugsscanner.i: bugsscanner.cpp.i
 
-.PHONY : main.i
+.PHONY : bugsscanner.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/main.cpp.i
-.PHONY : main.cpp.i
+bugsscanner.cpp.i:
+	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.i
+.PHONY : bugsscanner.cpp.i
 
-main.s: main.cpp.s
+bugsscanner.s: bugsscanner.cpp.s
 
-.PHONY : main.s
+.PHONY : bugsscanner.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/main.cpp.s
-.PHONY : main.cpp.s
+bugsscanner.cpp.s:
+	$(MAKE) -f CMakeFiles/BugsDocScanner.dir/build.make CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.s
+.PHONY : bugsscanner.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... BugsDocScanner"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... bugsscanner.o"
+	@echo "... bugsscanner.i"
+	@echo "... bugsscanner.s"
 .PHONY : help
 
 
