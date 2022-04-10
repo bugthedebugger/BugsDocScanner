@@ -2,6 +2,7 @@
 #include <opencv2/opencv.hpp>
 #include <vector>
 #include <iostream>
+#include <chrono>
 // #include "bugs_scanner/bugs_scanner.hpp"
 
 #define CONTOUR_THRESHOLD 5000
@@ -12,9 +13,12 @@ vector<vector<cv::Point>> biggestContour(std::vector<std::vector<cv::Point>> con
 void getContour(vector<vector<cv::Point>> biggestContourPoints, cv::Point2f (&dst)[4]);
 void getOrigin(cv::InputArray img, cv::Point2f (&dst)[4]);
 void edgeDetectionFilter1(cv::InputArray src, cv::OutputArray dst);
-void warpAndGetOriginalImage(cv::Mat src, cv::Mat dst);
-void warpAndGetBWImage(cv::Mat src, cv::Mat dst);
-void warpAndGetBWSharpImage(cv::Mat src, cv::Mat dst);
+string warpAndGetOriginalImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
+string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
+// void warpImage(cv::Mat src, cv::Mat dst, vector<vector<cv::Point>> contour);
+void warpImage(cv::Mat src, cv::Mat dst);
+string getFileName(string ext);
+
 
 vector<vector<cv::Point>> biggestContour(std::vector<std::vector<cv::Point>> contours) {
   vector <cv::Point> _biggestContour; 
@@ -76,7 +80,24 @@ void edgeDetectionFilter2(cv::InputArray src, cv::OutputArray dst){
   cv::erode(src, dst, kernel, cv::Point(-1, -1), 1);
 }
 
-void warpAndGetOriginalImage(cv::Mat src, cv::Mat dst) {
+string warpAndGetOriginalImageWithDefaultContourSaveFile(string filePath, string savePath, string ext=".jpg") {
+  cv::Mat src = cv::imread(filePath);
+  warpImage(src, src);
+  string imageSavepath = savePath + getFileName(ext);
+  cv::imwrite(imageSavepath, src);
+  return imageSavepath;
+}
+
+string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext=".jpg") {
+  cv::Mat src = cv::imread(filePath);
+  warpImage(src, src);
+  edgeDetectionFilter1(src, src);
+  string imageSavepath = savePath + getFileName(ext);
+  cv::imwrite(imageSavepath, src);
+  return imageSavepath;
+}
+
+void warpImage(cv::Mat src, cv::Mat dst) {
   cv::Mat draw = src.clone();
   std::vector<std::vector<cv::Point>> contour1;
   std::vector<std::vector<cv::Point>> contour2;
@@ -102,62 +123,27 @@ void warpAndGetOriginalImage(cv::Mat src, cv::Mat dst) {
   }
 
   if(!biggest.empty()) {
-    // Uncomment following line to hide contour line
-    // cv::drawContours(draw, biggest, 0, cv::Scalar(255, 0, 0), 20);
     cv::Point2f inputQuad[4];
     getContour(biggest, inputQuad);
-
     cv::Point2f outputQuad[4];
-    getOrigin(draw, outputQuad);
-
-    cv::Mat warpPerspective = cv::getPerspectiveTransform(inputQuad,outputQuad);
-    cv::warpPerspective(draw, dst, warpPerspective, draw.size());
+    getOrigin(src, outputQuad);
+    cv::Mat warpPerspective = cv::getPerspectiveTransform(inputQuad, outputQuad);
+    cv::warpPerspective(src, dst, warpPerspective, src.size());
   }
 }
 
-void warpAndGetBWImage(cv::Mat src, cv::Mat dst) {
-  cv::Mat draw = src.clone();
-  std::vector<std::vector<cv::Point>> contour1;
-  std::vector<std::vector<cv::Point>> contour2;
+string getFileName(string ext) {
+  uint64_t timeSinceEpochMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
+    std::chrono::system_clock::now().time_since_epoch()
+  ).count();
 
-  // Convert image to gray scale to prepare for edge detection
-  cv::Mat imgCopy1 = draw.clone();
-  cv::Mat imgCopy2 = draw.clone();
-
-  edgeDetectionFilter1(imgCopy1, imgCopy1);
-  edgeDetectionFilter2(imgCopy2, imgCopy2);
-
-  // Find contour
-  cv::findContours(imgCopy1, contour1, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-  cv::findContours(imgCopy2, contour2, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-  vector<vector<cv::Point>> biggest1  = biggestContour(contour1);
-  vector<vector<cv::Point>> biggest2 = biggestContour(contour2);
-  vector<vector<cv::Point>> biggest;
-
-  if(biggest2.empty()) {
-    biggest = biggest1;
-  } else if(biggest1.empty()) {
-    biggest  = biggest2;
-  }
-
-  edgeDetectionFilter1(draw, draw);
-  if(!biggest.empty()) {
-    // Uncomment following line to hide contour line
-    // cv::drawContours(draw, biggest, 0, cv::Scalar(255, 0, 0), 20);
-    cv::Point2f inputQuad[4];
-    getContour(biggest, inputQuad);
-
-    cv::Point2f outputQuad[4];
-    getOrigin(draw, outputQuad);
-
-    cv::Mat warpPerspective = cv::getPerspectiveTransform(inputQuad,outputQuad);
-    cv::warpPerspective(draw, dst, warpPerspective, draw.size());
-  }
+  char fileName[200];
+  sprintf(fileName, "%ld%s", timeSinceEpochMilliseconds, ext.c_str());
+  return fileName; 
 }
 
-void warpAndGetBWSharpImage(cv::InputArray src, cv::OutputArray dst) {
-  //
-}
+
+
 
 int main() {
   string image_path = "images/original/1.jpg";
@@ -172,44 +158,9 @@ int main() {
   cout << "Image dimensions: " << img.size << endl;
 
   cv::Mat draw = img.clone();
-  // warpAndGetOriginalImage(draw, draw);
-  warpAndGetBWImage(draw, draw);
-  // std::vector<std::vector<cv::Point>> contour1;
-  // std::vector<std::vector<cv::Point>> contour2;
-
-  // // Convert image to gray scale to prepare for edge detection
-  // cv::Mat imgCopy1 = img.clone();
-  // cv::Mat imgCopy2 = img.clone();
-
-  // edgeDetectionFilter1(imgCopy1, imgCopy1);
-  // edgeDetectionFilter2(imgCopy2, imgCopy2);
-
-  // // Find contour
-  // cv::findContours(imgCopy1, contour1, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-  // cv::findContours(imgCopy2, contour2, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
-  // vector<vector<cv::Point>> biggest1  = biggestContour(contour1);
-  // vector<vector<cv::Point>> biggest2 = biggestContour(contour2);
-  // vector<vector<cv::Point>> biggest;
-
-  // if(biggest2.empty()) {
-  //   biggest = biggest1;
-  // } else if(biggest1.empty()) {
-  //   biggest  = biggest2;
-  // }
-
-  // if(!biggest.empty()) {
-  //   // Uncomment following line to hide contour line
-  //   // cv::drawContours(draw, biggest, 0, cv::Scalar(255, 0, 0), 20);
-  //   cv::Point2f inputQuad[4];
-  //   getContour(biggest, inputQuad);
-
-  //   cv::Point2f outputQuad[4];
-  //   getOrigin(img, outputQuad);
-
-  //   cv::Mat warpPerspective = cv::getPerspectiveTransform(inputQuad,outputQuad);
-  //   cv::warpPerspective(draw, draw, warpPerspective, img.size());
-  // }
-
+  // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
+  warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
+  // warpAndGetBWImageWithDefaultContour(draw, draw);
   /**
    * @brief gets image buffer
    * string byteStr = ".jpg"; 
@@ -218,7 +169,7 @@ int main() {
    * 
    */
 
-  edgeDetectionFilter1(draw, draw);
+  // edgeDetectionFilter1(draw, draw);
   imshow("Display window", draw);
   
   cout << endl;
