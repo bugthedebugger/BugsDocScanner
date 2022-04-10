@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/bugthedebugger/Documents/cpp/opencv/build",
+  "command": "/usr/bin/g++   -I../bugs_scanner -isystem /usr/local/include/opencv4  -g   -o CMakeFiles/BugsDocScanner.dir/main.cpp.o -c /home/bugthedebugger/Documents/cpp/opencv/main.cpp",
+  "file": "/home/bugthedebugger/Documents/cpp/opencv/main.cpp"
+}
+]

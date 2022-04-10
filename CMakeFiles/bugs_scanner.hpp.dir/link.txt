@@ -1,0 +1,2 @@
+/usr/bin/ar qc libbugs_scanner.hpp.a  CMakeFiles/bugs_scanner.hpp.dir/bugs_scanner.cpp.o
+/usr/bin/ranlib libbugs_scanner.hpp.a
