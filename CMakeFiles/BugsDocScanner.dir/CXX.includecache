@@ -1045,11 +1045,7 @@ opencv2/core.hpp
 /usr/local/include/opencv4/opencv2/opencv2/core.hpp
 
 includes/bugsscanner.hpp
-stdio.h
--
-vector
--
-iostream
+stdint.h
 -
 
 includes/bugsscanner_cpp.hpp
