@@ -42,3 +42,21 @@ string warpAndGetBWImageWithDefaultContourSaveFile(vector<uint8_t> buf, string s
 vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(vector<uint8_t> buf);
 
 // TODO: make above functions for custom contour
+// Warp and save image with original color to file using default contours
+string warpAndGetOriginalImageWithDefaultContourSaveFile(string filePath, string savePath, string ext, vector<vector<cv::Point>> contour);
+// // Warp and get buffer of image with original color with default contours;
+// vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(string filePath, vector<vector<cv::Point>> contour);
+// // Warp and save image as bw color to file using default contours
+// string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext, vector<vector<cv::Point>> contour);
+// // Warp and get buffer of image with bw color with default contours
+// vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(string filePath, vector<vector<cv::Point>> contour);
+
+// // The following methods read image from buffer
+// // Warp and save image with original color to file using default contours
+// string warpAndGetOriginalImageWithDefaultContourSaveFile(vector<uint8_t> buf, string savePath, string ext, vector<vector<cv::Point>> contour);
+// // Warp and get buffer of image with original color with default contours;
+// vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(vector<uint8_t> buf, vector<vector<cv::Point>> contour);
+// // Warp and save image as bw color to file using default contours
+// string warpAndGetBWImageWithDefaultContourSaveFile(vector<uint8_t> buf, string savePath, string ext, vector<vector<cv::Point>> contour);
+// // Warp and get buffer of image with bw color with default contours
+// vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(vector<uint8_t> buf, vector<vector<cv::Point>> contour);
