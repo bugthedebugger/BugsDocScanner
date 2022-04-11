@@ -19,6 +19,8 @@ chrono
 -
 bugsscanner.hpp
 /home/bugthedebugger/Documents/cpp/opencv/bugsscanner.hpp
+bugsscanner_cpp.hpp
+/home/bugthedebugger/Documents/cpp/opencv/bugsscanner_cpp.hpp
 string.h
 -
 stdlib.h
@@ -1045,12 +1047,16 @@ opencv2/core.hpp
 includes/bugsscanner.hpp
 stdio.h
 -
-opencv2/opencv.hpp
--
 vector
 -
 iostream
 -
-chrono
+
+includes/bugsscanner_cpp.hpp
+vector
+-
+iostream
+-
+opencv2/opencv.hpp
 -
 

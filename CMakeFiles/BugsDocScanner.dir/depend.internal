@@ -107,3 +107,4 @@ CMakeFiles/BugsDocScanner.dir/bugsscanner.cpp.o
  /usr/local/include/opencv4/opencv2/video/tracking.hpp
  /usr/local/include/opencv4/opencv2/videoio.hpp
  includes/bugsscanner.hpp
+ includes/bugsscanner_cpp.hpp
