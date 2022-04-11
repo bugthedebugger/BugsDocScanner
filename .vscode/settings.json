@@ -59,5 +59,6 @@
     "typeindex": "cpp",
     "typeinfo": "cpp",
     "bit": "cpp"
-  }
+  },
+  "cmake.configureOnOpen": false
 }
