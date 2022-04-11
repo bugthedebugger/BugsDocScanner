@@ -122,6 +122,25 @@ vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(vector<uint8_t> buf
   return processedBuf;
 }
 
+string warpAndGetBWImageWithDefaultContourSaveFile(vector<uint8_t> buf, string savePath, string ext) {
+  cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
+  warpImage(src, src);
+  edgeDetectionFilter1(src, src);
+  string imageSavepath = savePath + getFileName(ext);
+  cv::imwrite(imageSavepath, src);
+  return imageSavepath;
+}
+
+vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(vector<uint8_t> buf) {
+  cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
+  warpImage(src, src);
+  edgeDetectionFilter1(src, src);
+  string bufferType = ".jpg";
+  vector<uchar> processedBuf;
+  cv::imencode(bufferType, src, processedBuf);
+  return processedBuf;
+}
+
 void warpImage(cv::Mat src, cv::Mat dst) {
   cv::Mat draw = src.clone();
   std::vector<std::vector<cv::Point>> contour1;
@@ -199,8 +218,8 @@ int main() {
   vector<uint8_t> sourceImageBuffer;
   cv::imencode(".jpg", sourceImage, sourceImageBuffer);
 
-  warpAndGetOriginalImageWithDefaultContourSaveFile(sourceImageBuffer, output_path, ".jpg");
-  vector<uint8_t> processedBuffer = warpAndGetOriginalImageWithDefaultContourBuf(sourceImageBuffer);
+  warpAndGetBWImageWithDefaultContourSaveFile(sourceImageBuffer, output_path, ".jpg");
+  vector<uint8_t> processedBuffer = warpAndGetBWImageWithDefaultContourBuf(sourceImageBuffer);
   // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // vector<uint8_t> buffer1 = warpAndGetOriginalImageWithDefaultContourBuf(image_path);
