@@ -4,7 +4,6 @@
 #include <iostream>
 #include <chrono>
 #include "bugsscanner.hpp"
-// #include "bugs_scanner/bugs_scanner.hpp"
 
 #define CONTOUR_THRESHOLD 5000
 
@@ -279,7 +278,6 @@ string getFileName(string ext=".jpg") {
   sprintf(fileName, "%ld%s", timeSinceEpochMilliseconds, ext.c_str());
   return fileName; 
 }
-
 
 
 
