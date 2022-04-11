@@ -112,6 +112,15 @@ string warpAndGetBWImageSaveFile(string filePath, string savePath, string ext=".
   return imageSavepath;
 }
 
+string warpAndGetBWImageSaveFile(string filePath, string savePath, vector<vector<cv::Point>> contour, string ext=".jpg") {
+  cv::Mat src = cv::imread(filePath);
+  warpImage(src, src, contour);
+  edgeDetectionFilter1(src, src);
+  string imageSavepath = savePath + getFileName(ext);
+  cv::imwrite(imageSavepath, src);
+  return imageSavepath;
+}
+
 vector<uint8_t> warpAndGetBWImageBuf(string filePath) {
   cv::Mat src = cv::imread(filePath);
   warpImage(src, src);
@@ -122,7 +131,7 @@ vector<uint8_t> warpAndGetBWImageBuf(string filePath) {
   return buf;
 }
 
-string warpAndGetOriginalImageSaveFile(vector<uint8_t> buf, string savePath, string ext) {
+string warpAndGetOriginalImageSaveFile(vector<uint8_t> buf, string savePath, string ext=".jpg") {
   cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
   warpImage(src, src);
   string imageSavepath = savePath + getFileName(ext);
@@ -139,7 +148,7 @@ vector<uint8_t> warpAndGetOriginalImageBuf(vector<uint8_t> buf) {
   return processedBuf;
 }
 
-string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, string ext) {
+string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, string ext=".jpg") {
   cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
   warpImage(src, src);
   edgeDetectionFilter1(src, src);
@@ -147,6 +156,7 @@ string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, string ex
   cv::imwrite(imageSavepath, src);
   return imageSavepath;
 }
+
 
 vector<uint8_t> warpAndGetBWImageBuf(vector<uint8_t> buf) {
   cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
@@ -214,7 +224,7 @@ void warpImage(cv::Mat src, cv::Mat dst, vector<vector<cv::Point>> contour) {
   }
 }
 
-string getFileName(string ext) {
+string getFileName(string ext=".jpg") {
   uint64_t timeSinceEpochMilliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(
     std::chrono::system_clock::now().time_since_epoch()
   ).count();
@@ -243,7 +253,7 @@ int main() {
     cv::Point(50, 0),
   });
 
-  warpAndGetOriginalImageSaveFile(image_path, output_path, contour, ".jpg");
+  warpAndGetBWImageSaveFile(image_path, output_path, contour, ".jpg");
   vector<uint8_t> processedBuffer = warpAndGetOriginalImageBuf(image_path, contour);
   // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
