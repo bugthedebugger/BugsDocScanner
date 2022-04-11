@@ -19,7 +19,7 @@ void edgeDetectionFilter2(cv::InputArray src, cv::OutputArray dst);
 // Warp image using default contour
 void warpImage(cv::Mat src, cv::Mat dst);
 // Warp image using custom contour
-void warpImage(cv::Mat src, cv::Mat dst, vector<vector<cv::Point>> contour);
+void warpImage(cv::Mat src, cv::Mat dst, struct Contour contour);
 // Return unique file name
 string getFileName(string ext);
 // Warp and save image with original color to file using default contours
@@ -42,20 +42,36 @@ string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, string ex
 vector<uint8_t> warpAndGetBWImageBuf(vector<uint8_t> buf);
 
 // Warp and save image with original color to file using custom contours
-string warpAndGetOriginalImageSaveFile(string filePath, string savePath, vector<vector<cv::Point>> contour, string ext);
+string warpAndGetOriginalImageSaveFile(string filePath, string savePath, struct Contour contour, string ext);
 // Warp and get buffer of image with original color with custom contours;
-vector<uint8_t> warpAndGetOriginalImageBuf(string filePath, vector<vector<cv::Point>> contour);
+vector<uint8_t> warpAndGetOriginalImageBuf(string filePath, struct Contour contour);
 // Warp and save image as bw color to file using custom contours
-string warpAndGetBWImageSaveFile(string filePath, string savePath, vector<vector<cv::Point>> contour, string ext);
+string warpAndGetBWImageSaveFile(string filePath, string savePath, struct Contour contour, string ext);
 // Warp and get buffer of image with bw color with custom contours
-vector<uint8_t> warpAndGetBWImageBuf(string filePath, vector<vector<cv::Point>> contour);
+vector<uint8_t> warpAndGetBWImageBuf(string filePath, struct Contour contour);
 
 // The following methods read image from buffer
 // Warp and save image with original color to file using custom contours
-string warpAndGetOriginalImageSaveFile(vector<uint8_t> buf, string savePath, vector<vector<cv::Point>> contour, string ext);
+string warpAndGetOriginalImageSaveFile(vector<uint8_t> buf, string savePath, struct Contour contour, string ext);
 // Warp and get buffer of image with original color with custom contours;
-vector<uint8_t> warpAndGetOriginalImageBuf(vector<uint8_t> buf, vector<vector<cv::Point>> contour);
+vector<uint8_t> warpAndGetOriginalImageBuf(vector<uint8_t> buf, struct Contour contour);
 // Warp and save image as bw color to file using custom contours
-string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, vector<vector<cv::Point>> contour, string ext);
+string warpAndGetBWImageSaveFile(vector<uint8_t> buf, string savePath, struct Contour contour, string ext);
 // Warp and get buffer of image with bw color with custom contours
-vector<uint8_t> warpAndGetBWImageBuf(vector<uint8_t> buf, vector<vector<cv::Point>> contour);
+vector<uint8_t> warpAndGetBWImageBuf(vector<uint8_t> buf, struct Contour contour);
+
+struct Coordinates {
+  float x;
+  float y;
+};
+
+struct Contour {
+  Coordinates topLeft;
+  Coordinates bottomLeft;
+  Coordinates bottomRight;
+  Coordinates topRight;
+};
+
+// Function to calculate contour
+Contour findContour(string src);
+Contour findContour(vector<uint8_t> buf);
