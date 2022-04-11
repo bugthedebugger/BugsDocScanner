@@ -94,6 +94,15 @@ vector<uint8_t> warpAndGetOriginalImageBuf(string filePath) {
   return buf;
 }
 
+vector<uint8_t> warpAndGetOriginalImageBuf(string filePath, vector<vector<cv::Point>> contour) {
+  cv::Mat src = cv::imread(filePath);
+  warpImage(src, src, contour);
+  string bufferType = ".jpg";
+  vector<uchar> buf;
+  cv::imencode(bufferType, src, buf);
+  return buf;
+}
+
 string warpAndGetBWImageSaveFile(string filePath, string savePath, string ext=".jpg") {
   cv::Mat src = cv::imread(filePath);
   warpImage(src, src);
@@ -235,7 +244,7 @@ int main() {
   });
 
   warpAndGetOriginalImageSaveFile(image_path, output_path, contour, ".jpg");
-  vector<uint8_t> processedBuffer = warpAndGetBWImageBuf(sourceImageBuffer);
+  vector<uint8_t> processedBuffer = warpAndGetOriginalImageBuf(image_path, contour);
   // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // vector<uint8_t> buffer1 = warpAndGetOriginalImageWithDefaultContourBuf(image_path);
