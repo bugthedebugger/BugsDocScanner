@@ -113,6 +113,15 @@ string warpAndGetOriginalImageWithDefaultContourSaveFile(vector<uint8_t> buf, st
   return imageSavepath;
 }
 
+vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(vector<uint8_t> buf) {
+  cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
+  warpImage(src, src);
+  string bufferType = ".jpg";
+  vector<uchar> processedBuf;
+  cv::imencode(bufferType, src, processedBuf);
+  return processedBuf;
+}
+
 void warpImage(cv::Mat src, cv::Mat dst) {
   cv::Mat draw = src.clone();
   std::vector<std::vector<cv::Point>> contour1;
@@ -191,15 +200,15 @@ int main() {
   cv::imencode(".jpg", sourceImage, sourceImageBuffer);
 
   warpAndGetOriginalImageWithDefaultContourSaveFile(sourceImageBuffer, output_path, ".jpg");
-
+  vector<uint8_t> processedBuffer = warpAndGetOriginalImageWithDefaultContourBuf(sourceImageBuffer);
   // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // vector<uint8_t> buffer1 = warpAndGetOriginalImageWithDefaultContourBuf(image_path);
   // vector<uint8_t> buffer2 = warpAndGetBWImageWithDefaultContourBuf(image_path);
 
-  // cv::Mat img = cv::imdecode(buffer2, cv::IMREAD_COLOR);
+  cv::Mat img = cv::imdecode(processedBuffer, cv::IMREAD_COLOR);
   
-  // cv::imshow("Buffered", img);
+  cv::imshow("Buffered", img);
   //
   /**
    * @brief gets image buffer
