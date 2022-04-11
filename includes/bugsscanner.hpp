@@ -30,3 +30,10 @@ vector<uint8_t> warpAndGetOriginalImageWithDefaultContourBuf(string filePath);
 string warpAndGetBWImageWithDefaultContourSaveFile(string filePath, string savePath, string ext);
 // Warp and get buffer of image with bw color with default contours
 vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(string filePath);
+
+// The following methods read image from buffer
+// TODO: warpAndGetOriginalImageWithDefaultContourSaveFile
+string warpAndGetOriginalImageWithDefaultContourSaveFile(vector<uint8_t> buf, string savePath, string ext);
+// TODO: warpAndGetOriginalImageFromBufWithDefaultContourBuf
+// TODO: warpAndGetBWImageFromBufWithDefaultContourSaveFile
+// TODO: warpAndGetBWImageFromBufWithDefaultContourBuf

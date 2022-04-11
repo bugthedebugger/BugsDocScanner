@@ -105,6 +105,14 @@ vector<uint8_t> warpAndGetBWImageWithDefaultContourBuf(string filePath) {
   return buf;
 }
 
+string warpAndGetOriginalImageWithDefaultContourSaveFile(vector<uint8_t> buf, string savePath, string ext) {
+  cv::Mat src = cv::imdecode(buf, cv::IMREAD_COLOR);
+  warpImage(src, src);
+  string imageSavepath = savePath + getFileName(ext);
+  cv::imwrite(imageSavepath, src);
+  return imageSavepath;
+}
+
 void warpImage(cv::Mat src, cv::Mat dst) {
   cv::Mat draw = src.clone();
   std::vector<std::vector<cv::Point>> contour1;
@@ -120,6 +128,7 @@ void warpImage(cv::Mat src, cv::Mat dst) {
   // Find contour
   cv::findContours(imgCopy1, contour1, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
   cv::findContours(imgCopy2, contour2, cv::RETR_EXTERNAL, cv::CHAIN_APPROX_SIMPLE);
+
   vector<vector<cv::Point>> biggest1  = biggestContour(contour1);
   vector<vector<cv::Point>> biggest2 = biggestContour(contour2);
   vector<vector<cv::Point>> biggest;
@@ -175,14 +184,22 @@ string getFileName(string ext) {
 
 int main() {
   string image_path = "images/original/1.jpg";
+  string output_path = "images/processed/";
+
+  cv::Mat sourceImage = cv::imread(image_path);
+  vector<uint8_t> sourceImageBuffer;
+  cv::imencode(".jpg", sourceImage, sourceImageBuffer);
+
+  warpAndGetOriginalImageWithDefaultContourSaveFile(sourceImageBuffer, output_path, ".jpg");
+
   // warpAndGetOriginalImageWithDefaultContourSaveFile(image_path, "images/processed/");
   // warpAndGetBWImageWithDefaultContourSaveFile(image_path, "images/processed/");
-  vector<uint8_t> buffer1 = warpAndGetOriginalImageWithDefaultContourBuf(image_path);
-  vector<uint8_t> buffer2 = warpAndGetBWImageWithDefaultContourBuf(image_path);
+  // vector<uint8_t> buffer1 = warpAndGetOriginalImageWithDefaultContourBuf(image_path);
+  // vector<uint8_t> buffer2 = warpAndGetBWImageWithDefaultContourBuf(image_path);
 
-  cv::Mat img = cv::imdecode(buffer2, cv::IMREAD_COLOR);
+  // cv::Mat img = cv::imdecode(buffer2, cv::IMREAD_COLOR);
   
-  cv::imshow("Buffered", img);
+  // cv::imshow("Buffered", img);
   //
   /**
    * @brief gets image buffer
