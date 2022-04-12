@@ -5,10 +5,16 @@ struct ImgBuffer {
   long unsigned int size;
 };
 
+extern "C" __attribute__((visibility("default"))) __attribute__((used))
+ImgBuffer createImgBuffer(uint8_t* buffer, long unsigned int size);
+
 struct Coordinates {
   float x;
   float y;
 };
+
+extern "C" __attribute__((visibility("default"))) __attribute__((used))
+Coordinates createCoordinates(float x, float y);
 
 struct Contour {
   Coordinates topLeft;
@@ -16,6 +22,14 @@ struct Contour {
   Coordinates bottomRight;
   Coordinates topRight;
 };
+
+extern "C" __attribute__((visibility("default"))) __attribute__((used))
+Contour createContour(
+  Coordinates topLeft,
+  Coordinates bottomLeft,
+  Coordinates bottomRight,
+  Coordinates topRight
+);
 
 // Return unique file name
 extern "C" __attribute__((visibility("default"))) __attribute__((used))

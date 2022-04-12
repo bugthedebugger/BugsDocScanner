@@ -402,6 +402,25 @@ vector<uint8_t> uint8_t_list_to_vector(ImgBuffer buf) {
   return uintBuf;
 }
 
+ImgBuffer createImgBuffer(uint8_t* buffer, long unsigned int size) {
+  return {buffer, size};
+}
+
+Coordinates createCoordinates(float x, float y) {
+  return {x, y};
+}
+
+Contour createContour(
+  Coordinates topLeft,
+  Coordinates bottomLeft,
+  Coordinates bottomRight,
+  Coordinates topRight
+) {
+  return {
+    topLeft, bottomLeft, bottomRight, topRight
+  };
+}
+
 int main() {
   string image_path = "images/original/1.jpg";
   string output_path = "images/processed/";
