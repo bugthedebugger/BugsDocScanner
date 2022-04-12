@@ -547,10 +547,10 @@ Contour createContour(
 }
 
 int main() {
-  string image_path = "images/original/4.jpg";
+  string image_path = "images/original/5.jpg";
   string output_path = "images/processed/";
 
-  char image_path_c[] = "images/original/4.jpg";
+  char image_path_c[] = "images/original/5.jpg";
   char output_path_c[] = "images/processed/";
 
   cv::Mat sourceImage = cv::imread(image_path);
@@ -559,9 +559,9 @@ int main() {
 
   Contour contour = {
     {0, 0},
-    {0, 150},
-    {150, 150},
-    {150, 0},
+    {0, 3456},
+    {4608, 3456},
+    {4608, 0},
   };
 
   char file_extension[] = ".jpg";
@@ -584,7 +584,13 @@ int main() {
   // ImgBuffer bufferFromFunc = warpAndGetBWImageBufCustomContourInBuf({testBuffer, sourceImageBuffer.size()}, contour);
 
   cv::Mat img = cv::imdecode(uint8_t_list_to_vector(bufferFromFunc), cv::IMREAD_COLOR);
-  cv::imshow("Image", img);
+  // cv::resizeWindow("Image", cv::Size(300, 600));
+  // cv::imshow("Image", img);
+
+  cv::namedWindow("custom window", cv::WINDOW_KEEPRATIO);
+  cv::imshow("custom window", img);
+  cv::resizeWindow("custom window", 600, 800);
+
   cv::waitKey();
   
 
