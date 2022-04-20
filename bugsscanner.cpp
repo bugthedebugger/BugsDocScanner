@@ -241,8 +241,9 @@ ImgBuffer warpAndGetBWImageBufCustomContour(char* filePath, struct Contour conto
   return {buffer, buf.size()};
 }
 
-char* warpAndGetOriginalImageSaveFileInbuf(ImgBuffer buf, char* savePath, char* ext) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+char* warpAndGetOriginalImageSaveFileInbuf(uchar* buf,  long unsigned int bufSize, char* savePath, char* ext) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImage(src, src);
   char* imageSavepath = (char*) malloc(sizeof(savePath) + sizeof(ext) + 4);
   sprintf(imageSavepath, "%s%s", savePath, getFileName(ext));
@@ -250,8 +251,9 @@ char* warpAndGetOriginalImageSaveFileInbuf(ImgBuffer buf, char* savePath, char* 
   return imageSavepath;
 }
 
-char* warpAndGetOriginalImageSaveFileCustomContourInBuf(ImgBuffer buf, char* savePath, struct Contour contour, char* ext) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+char* warpAndGetOriginalImageSaveFileCustomContourInBuf(uchar* buf,  long unsigned int bufSize, char* savePath, struct Contour contour, char* ext) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImageCustomContour(src, src, contour);
   char* imageSavepath = (char*) malloc(sizeof(savePath) + sizeof(ext) + 4);
   sprintf(imageSavepath, "%s%s", savePath, getFileName(ext));
@@ -259,8 +261,9 @@ char* warpAndGetOriginalImageSaveFileCustomContourInBuf(ImgBuffer buf, char* sav
   return imageSavepath;
 }
 
-ImgBuffer warpAndGetOriginalImageSaveBufInBuf(ImgBuffer buf) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+ImgBuffer warpAndGetOriginalImageSaveBufInBuf(uchar* buf,  long unsigned int bufSize) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImage(src, src);
   string bufferType = ".jpg";
   vector<uint8_t> processedBuf;
@@ -273,8 +276,9 @@ ImgBuffer warpAndGetOriginalImageSaveBufInBuf(ImgBuffer buf) {
   return {buffer, processedBuf.size()};
 }
 
-ImgBuffer warpAndGetOriginalImageBufCustonContourInBuf(ImgBuffer buf, struct Contour contour) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+ImgBuffer warpAndGetOriginalImageBufCustonContourInBuf(uchar* buf,  long unsigned int bufSize, struct Contour contour) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImageCustomContour(src, src, contour);
   string bufferType = ".jpg";
   vector<uint8_t> processedBuf;
@@ -287,8 +291,9 @@ ImgBuffer warpAndGetOriginalImageBufCustonContourInBuf(ImgBuffer buf, struct Con
   return {buffer, processedBuf.size()};
 }
 
-char* warpAndGetBWImageSaveFileInBuf(ImgBuffer buf, char* savePath, char* ext) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+char* warpAndGetBWImageSaveFileInBuf(uchar* buf,  long unsigned int bufSize, char* savePath, char* ext) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImage(src, src);
   edgeDetectionFilter1(src, src);
   char* imageSavepath = (char*) malloc(sizeof(savePath) + sizeof(ext) + 4);
@@ -297,8 +302,9 @@ char* warpAndGetBWImageSaveFileInBuf(ImgBuffer buf, char* savePath, char* ext) {
   return imageSavepath;
 }
 
-char* warpAndGetBWImageSaveFileCustomContourInBuf(ImgBuffer buf, char* savePath, struct Contour contour, char* ext) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+char* warpAndGetBWImageSaveFileCustomContourInBuf(uchar* buf,  long unsigned int bufSize, char* savePath, struct Contour contour, char* ext) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImageCustomContour(src, src, contour);
   edgeDetectionFilter1(src, src);
   char* imageSavepath = (char*) malloc(sizeof(savePath) + sizeof(ext) + 4);
@@ -308,8 +314,9 @@ char* warpAndGetBWImageSaveFileCustomContourInBuf(ImgBuffer buf, char* savePath,
 }
 
 
-ImgBuffer warpAndGetBWImageSaveBufInBuf(ImgBuffer buf) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+ImgBuffer warpAndGetBWImageSaveBufInBuf(uchar* buf,  long unsigned int bufSize) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImage(src, src);
   edgeDetectionFilter1(src, src);
   string bufferType = ".jpg";
@@ -323,8 +330,9 @@ ImgBuffer warpAndGetBWImageSaveBufInBuf(ImgBuffer buf) {
   return {buffer, processedBuf.size()};
 }
 
-ImgBuffer warpAndGetBWImageBufCustomContourInBuf(ImgBuffer buf, struct Contour contour) {
-  cv::Mat src = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+ImgBuffer warpAndGetBWImageBufCustomContourInBuf(uchar* buf,  long unsigned int bufSize, struct Contour contour) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat src = cv::imdecode(data, cv::IMREAD_COLOR);
   src = warpImageCustomContour(src, src, contour);
   edgeDetectionFilter1(src, src);
   string bufferType = ".jpg";
@@ -335,7 +343,9 @@ ImgBuffer warpAndGetBWImageBufCustomContourInBuf(ImgBuffer buf, struct Contour c
   for(int i=0; i<processedBuf.size(); i++) {
     buffer[i] = processedBuf.at(i);
   }
-  return {buffer, processedBuf.size()};
+
+  uint64 processedBufSize = processedBuf.size();
+  return {buffer, processedBufSize};
 }
 
 cv::Mat warpImage(cv::Mat src, cv::Mat dst) {
@@ -459,8 +469,9 @@ Contour findContourFromImagePath(char* src) {
   return contour;
 }
 
-Contour findContourFromImageBuffer(ImgBuffer buf) {
-  cv::Mat draw = cv::imdecode(uint8_t_list_to_vector(buf), cv::IMREAD_COLOR);
+Contour findContourFromImageBuffer(uchar* buf,  long unsigned int bufSize) {
+  cv::Mat data = cv::Mat(1,bufSize, CV_8U, buf);
+  cv::Mat draw = cv::imdecode(data, cv::IMREAD_COLOR);
   std::vector<std::vector<cv::Point>> contour1;
   std::vector<std::vector<cv::Point>> contour2;
 
@@ -576,14 +587,15 @@ int main() {
   // ImgBuffer bufferFromFunc = warpAndGetBWImageSaveBufInBuf({testBuffer, sourceImageBuffer.size()});
   // ImgBuffer bufferFromFunc = warpAndGetBWImageBuf(image_path_c);
   // ImgBuffer bufferFromFunc = warpAndGetOriginalImageBuf(image_path_c);
-  // ImgBuffer bufferFromFunc = warpAndGetOriginalImageSaveBufInBuf({testBuffer, sourceImageBuffer.size()});
+  // ImgBuffer bufferFromFunc = warpAndGetOriginalImageSaveBufInBuf(testBuffer, sourceImageBuffer.size());
   // ImgBuffer bufferFromFunc = warpAndGetOriginalImageBufCustomContour(image_path_c, contour);
-  ImgBuffer bufferFromFunc = warpAndGetBWImageBufCustomContour(image_path_c, contour);
-  // ImgBuffer bufferFromFunc = warpAndGetOriginalImageBufCustonContourInBuf({testBuffer, sourceImageBuffer.size()}, contour);
+  // ImgBuffer bufferFromFunc = warpAndGetBWImageBufCustomContour(image_path_c, contour);
+  ImgBuffer bufferFromFunc = warpAndGetOriginalImageBufCustonContourInBuf(testBuffer, sourceImageBuffer.size(), contour);
   // distanceBetweenPoints(cv::Point(100,0), cv::Point(0, 0));
-  // ImgBuffer bufferFromFunc = warpAndGetBWImageBufCustomContourInBuf({testBuffer, sourceImageBuffer.size()}, contour);
-
-  cv::Mat img = cv::imdecode(uint8_t_list_to_vector(bufferFromFunc), cv::IMREAD_COLOR);
+  // ImgBuffer bufferFromFunc = warpAndGetBWImageBufCustomContourInBuf(testBuffer, sourceImageBuffer.size(), contour);
+  
+  cv::Mat data = cv::Mat(1, bufferFromFunc.size, CV_8U, bufferFromFunc.buffer);
+  cv::Mat img = cv::imdecode(data, cv::IMREAD_COLOR);
   // cv::resizeWindow("Image", cv::Size(300, 600));
   // cv::imshow("Image", img);
 
