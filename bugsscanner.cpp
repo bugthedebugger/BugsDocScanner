@@ -516,6 +516,8 @@ Contour findContourFromImageBuffer(uchar* buf,  long unsigned int bufSize) {
          biggest[0][3].y,
       },
     };
+  } else {
+    contour = {{ 0,0 }, { 0,0 }, { 0,0 }, { 0,0 }};
   }
   return contour;
 }
