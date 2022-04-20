@@ -9,12 +9,12 @@ extern "C" __attribute__((visibility("default"))) __attribute__((used))
 ImgBuffer createImgBuffer(uint8_t* buffer, long unsigned int size);
 
 struct Coordinates {
-  float x;
-  float y;
+  int64 x;
+  int64 y;
 };
 
 extern "C" __attribute__((visibility("default"))) __attribute__((used))
-Coordinates createCoordinates(float x, float y);
+Coordinates createCoordinates(int64 x, int64 y);
 
 struct Contour {
   Coordinates topLeft;

@@ -380,10 +380,10 @@ cv::Mat warpImage(cv::Mat src, cv::Mat dst) {
 
   if(!biggest.empty()) {
     cv::Size newimgsize = getNewSizeFromContour({
-      {(float)biggest[0][0].x, (float)biggest[0][0].y},
-      {(float)biggest[0][1].x, (float)biggest[0][1].y},
-      {(float)biggest[0][2].x, (float)biggest[0][2].y},
-      {(float)biggest[0][3].x, (float)biggest[0][3].y}
+      {biggest[0][0].x, biggest[0][0].y},
+      {biggest[0][1].x, biggest[0][1].y},
+      {biggest[0][2].x, biggest[0][2].y},
+      {biggest[0][3].x, biggest[0][3].y}
     });
     cv::Mat newImage = cv::Mat(newimgsize, 3);
 
@@ -449,20 +449,20 @@ Contour findContourFromImagePath(char* src) {
   if(!biggest.empty()) {
     contour = {
       {
-        (float) biggest[0][0].x,
-        (float) biggest[0][0].y,
+         biggest[0][0].x,
+         biggest[0][0].y,
       },
       {
-        (float) biggest[0][1].x,
-        (float) biggest[0][1].y,
+         biggest[0][1].x,
+         biggest[0][1].y,
       },
       {
-        (float) biggest[0][2].x,
-        (float) biggest[0][2].y,
+         biggest[0][2].x,
+         biggest[0][2].y,
       },
       {
-        (float) biggest[0][3].x,
-        (float) biggest[0][3].y,
+         biggest[0][3].x,
+         biggest[0][3].y,
       },
     };
   }
@@ -500,20 +500,20 @@ Contour findContourFromImageBuffer(uchar* buf,  long unsigned int bufSize) {
   if(!biggest.empty()) {
     contour = {
       {
-        (float) biggest[0][0].x,
-        (float) biggest[0][0].y,
+         biggest[0][0].x,
+         biggest[0][0].y,
       },
       {
-        (float) biggest[0][1].x,
-        (float) biggest[0][1].y,
+         biggest[0][1].x,
+         biggest[0][1].y,
       },
       {
-        (float) biggest[0][2].x,
-        (float) biggest[0][2].y,
+         biggest[0][2].x,
+         biggest[0][2].y,
       },
       {
-        (float) biggest[0][3].x,
-        (float) biggest[0][3].y,
+         biggest[0][3].x,
+         biggest[0][3].y,
       },
     };
   }
@@ -542,7 +542,7 @@ ImgBuffer createImgBuffer(uint8_t* buffer, long unsigned int size) {
   return {buffer, size};
 }
 
-Coordinates createCoordinates(float x, float y) {
+Coordinates createCoordinates(int64 x, int64 y) {
   return {x, y};
 }
 
