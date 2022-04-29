@@ -404,7 +404,7 @@ cv::Mat warpImageCustomContour(cv::Mat src, cv::Mat dst, struct Contour contour)
   cv::Mat draw = src.clone();
 
   cv::Point2f inputQuad[4];
-  inputQuad[0] = cv::Point2f(contour.topLeft.x, contour.topRight.y);
+  inputQuad[0] = cv::Point2f(contour.topLeft.x, contour.topLeft.y);
   inputQuad[1] = cv::Point2f(contour.bottomLeft.x, contour.bottomLeft.y);
   inputQuad[2] = cv::Point2f(contour.bottomRight.x, contour.bottomRight.y);
   inputQuad[3] = cv::Point2f(contour.topRight.x, contour.topRight.y);
